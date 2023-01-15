@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-zeroconf/android/build.gradle b/node_modules/react-native-zeroconf/android/build.gradle
+index c9802d6..8bbdc28 100644
+--- a/node_modules/react-native-zeroconf/android/build.gradle
++++ b/node_modules/react-native-zeroconf/android/build.gradle
+@@ -5,7 +5,7 @@ buildscript {
+   }
+ 
+   dependencies {
+-    classpath 'com.android.tools.build:gradle:3.5.1'
++    classpath 'com.android.tools.build:gradle:7.3.1'
+   }
+ }
+ 

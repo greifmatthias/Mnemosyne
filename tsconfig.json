@@ -1,0 +1,25 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "skipLibCheck": true,
+    "types": ["react-native"],
+    "typeRoots": ["./types"],
+    "paths": {
+      "animations": ["./animations"],
+      "components": ["./components"],
+      //   "config": ["./config"],
+      "context": ["./context"],
+      "helpers": ["./helpers"],
+      "hooks": ["./hooks"],
+      "modals": ["./modals"],
+      "navigation": ["./navigation"],
+      "patches": ["./patches"],
+      "screens": ["./screens"],
+      //   "services": ["./services"],
+      "theme": ["./theme"],
+      "types": ["./types"]
+    }
+  },
+  "include": ["src"]
+}
