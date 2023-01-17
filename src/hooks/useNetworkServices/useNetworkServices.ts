@@ -1,10 +1,7 @@
 import {useEffect, useMemo, useState} from 'react';
 import Zeroconf, {Service} from 'react-native-zeroconf';
 
-export type UseNetworkServicesReturn = {
-  service?: Zeroconf;
-  services: Record<string, Partial<Service>>;
-};
+import {UseNetworkServicesReturn} from './useNetworkServices.types';
 
 export const useNetworkServices = (): UseNetworkServicesReturn => {
   const [services, setServices] = useState<Record<string, Partial<Service>>>(

@@ -3836,10 +3836,10 @@
   "resolved" "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz"
   "version" "3.3.0"
 
-"eslint@8.31.0":
-  "integrity" "sha512-0tQQEVdmPZ1UtUKXjX7EMm9BlgJ08G90IhWh0PKDCb3ZLsgAOHI8fYSIzYVZej92zsgq+ft0FGsxhJ3xo2tbuA=="
-  "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.31.0.tgz"
-  "version" "8.31.0"
+"eslint@8.32.0":
+  "integrity" "sha512-nETVXpnthqKPFyuY2FNjz/bEd6nbosRgKbkgS/y1C7LJop96gYHWpiguLecMHQ2XCPxn77DS0P+68WzG6vkZSQ=="
+  "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.32.0.tgz"
+  "version" "8.32.0"
   dependencies:
     "@eslint/eslintrc" "^1.4.1"
     "@humanwhocodes/config-array" "^0.11.8"
@@ -7629,10 +7629,10 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.12.tgz"
   "version" "0.71.12"
 
-"react-native-reanimated@2.14.1":
-  "integrity" "sha512-o5fAcfYqgRENguVd1Xxd7PPwBgmqTA9yzrIlUk/I0iHeV+5lRLjYwya+Oz3muefUQoQk9hlVyEvZeEdwClC5AQ=="
-  "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.14.1.tgz"
-  "version" "2.14.1"
+"react-native-reanimated@2.14.2":
+  "integrity" "sha512-zj05BBafk38rE78PhHc6q0vg9M4WeJY/RExHUGFiP1miJyyAaJzs2jLQR+HY0zbutCE+/yNJyOE3dca2BslsGg=="
+  "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.14.2.tgz"
+  "version" "2.14.2"
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.16.7"
     "@babel/preset-typescript" "^7.16.7"
