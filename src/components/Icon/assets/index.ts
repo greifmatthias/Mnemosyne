@@ -15,6 +15,8 @@ export * from './Copybook.fluent';
 export * from './Cube.outline';
 export * from './Edit.outline';
 export * from './EllipsisV';
+export * from './File.outline';
+export * from './Folder.outline';
 export * from './Google';
 export * from './HardDrive.outline';
 export * from './Heart';

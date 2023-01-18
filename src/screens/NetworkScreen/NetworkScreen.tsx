@@ -1,4 +1,5 @@
-import React, {FC, useLayoutEffect, useMemo} from 'react';
+import React, {FC, useCallback, useLayoutEffect, useMemo} from 'react';
+import {Service} from 'react-native-zeroconf';
 import {FadeInDown} from 'react-native-reanimated';
 
 import {Lottie} from 'components';
@@ -10,7 +11,9 @@ import {NetworkScreenProps} from './NetworkScreen.types';
 import {ServiceItem} from './ServiceItem';
 
 export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
-  const {services} = useNetworkServices();
+  const {services} = useNetworkServices({
+    // isTest: true
+  });
 
   const hasServices = useMemo(() => !!Object.keys(services).length, [services]);
 
@@ -20,6 +23,13 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
     });
   }, [navigation, hasServices]);
 
+  const onItemPress = useCallback(
+    (service: Partial<Service>) => {
+      if (service.host) navigation.navigate('DirScreen', {service});
+    },
+    [navigation],
+  );
+
   if (!hasServices) return <LoadingScreen />;
 
   return (
@@ -28,6 +38,7 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
         <ServiceItem
           key={x}
           item={services[x]}
+          onPress={() => onItemPress(services[x])}
           entering={FadeInDown.delay(index * 100)}
         />
       ))}

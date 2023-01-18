@@ -1,6 +1,9 @@
-import Zeroconf, {Service} from 'react-native-zeroconf';
+import {Service} from 'react-native-zeroconf';
+
+export type UseNetworkServicesInterface = {
+  isTest?: boolean;
+};
 
 export type UseNetworkServicesReturn = {
-  service?: Zeroconf;
   services: Record<string, Partial<Service>>;
 };

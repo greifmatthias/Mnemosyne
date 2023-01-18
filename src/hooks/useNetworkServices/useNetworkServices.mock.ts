@@ -1,8 +1,6 @@
-import Zeroconf from 'react-native-zeroconf';
-
 import {UseNetworkServicesReturn} from './useNetworkServices.types';
 
-export const UseNetworkServiceMock: UseNetworkServicesReturn = {
+export const useNetworkServiceMock: UseNetworkServicesReturn = {
   services: {
     truenas: {
       addresses: ['192.168.0.160'],
@@ -13,5 +11,4 @@ export const UseNetworkServiceMock: UseNetworkServicesReturn = {
       txt: {},
     },
   },
-  service: new Zeroconf(),
 };

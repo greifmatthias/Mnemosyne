@@ -24,6 +24,8 @@ export const icons = {
   'cube-outline': assets.OutlineCube,
   'edit-outline': assets.OutlineEdit,
   ellipsisv: assets.EllipsisV,
+  'file-outline': assets.OutlineFile,
+  'folder-outline': assets.OutlineFolder,
   google: assets.Google,
   'harddrive-outline': assets.OutlineHardDrive,
   heart: assets.Heart,

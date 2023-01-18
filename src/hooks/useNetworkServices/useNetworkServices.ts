@@ -1,9 +1,15 @@
 import {useEffect, useMemo, useState} from 'react';
 import Zeroconf, {Service} from 'react-native-zeroconf';
 
-import {UseNetworkServicesReturn} from './useNetworkServices.types';
+import {useNetworkServiceMock} from './useNetworkServices.mock';
+import {
+  UseNetworkServicesInterface,
+  UseNetworkServicesReturn,
+} from './useNetworkServices.types';
 
-export const useNetworkServices = (): UseNetworkServicesReturn => {
+export const useNetworkServices = ({
+  isTest = false,
+}: UseNetworkServicesInterface): UseNetworkServicesReturn => {
   const [services, setServices] = useState<Record<string, Partial<Service>>>(
     () => ({}),
   );
@@ -44,8 +50,9 @@ export const useNetworkServices = (): UseNetworkServicesReturn => {
     };
   }, [service]);
 
+  if (isTest) return useNetworkServiceMock;
+
   return {
-    service,
     services,
   };
 };

@@ -6,7 +6,7 @@ import {StatusBar} from 'react-native';
 
 import {IconButton} from 'components';
 
-import {NetworkScreen} from 'screens';
+import {DirScreen, NetworkScreen} from 'screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +18,7 @@ export const Navigation: FC = () => {
   return (
     <>
       <StatusBar
-        // translucent
-        // barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        translucent
         barStyle="dark-content"
         backgroundColor="#00000000"
       />
@@ -50,6 +49,7 @@ export const Navigation: FC = () => {
                 />
               ) : null,
           })}>
+          <Stack.Screen name="DirScreen" component={DirScreen} />
           <Stack.Screen
             name="NetworkScreen"
             component={NetworkScreen}
