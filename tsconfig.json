@@ -8,7 +8,6 @@
     "paths": {
       "animations": ["./animations"],
       "components": ["./components"],
-      //   "config": ["./config"],
       "context": ["./context"],
       "helpers": ["./helpers"],
       "hooks": ["./hooks"],
@@ -16,7 +15,7 @@
       "navigation": ["./navigation"],
       "patches": ["./patches"],
       "screens": ["./screens"],
-      //   "services": ["./services"],
+      "services": ["./services"],
       "theme": ["./theme"],
       "types": ["./types"]
     }

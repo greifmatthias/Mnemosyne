@@ -1,12 +1,14 @@
 import React from 'react';
 
-import {ThemeProvider} from 'context';
+import {AppProvider, ThemeProvider} from 'context';
 import {Navigation} from 'navigation';
 
 export const App = () => {
   return (
-    <ThemeProvider>
-      <Navigation />
-    </ThemeProvider>
+    <AppProvider>
+      <ThemeProvider>
+        <Navigation />
+      </ThemeProvider>
+    </AppProvider>
   );
 };
