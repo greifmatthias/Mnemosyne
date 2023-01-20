@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {Service} from 'react-native-zeroconf';
 
 import {LocalServicesService} from 'services';
@@ -26,3 +26,5 @@ export const AppProvider = ({children}: any) => {
     <AppContext.Provider value={{services}}>{children}</AppContext.Provider>
   );
 };
+
+export const useAppContext = () => useContext(AppContext);

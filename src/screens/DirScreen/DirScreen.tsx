@@ -1,3 +1,4 @@
+import {useTheme} from '@emotion/react';
 import React, {FC, useLayoutEffect, useMemo, useState} from 'react';
 import {FadeInDown, FadeInUp, FadeOutUp} from 'react-native-reanimated';
 
@@ -9,6 +10,8 @@ import {FileItem} from './FileItem';
 
 export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
   const {service} = route.params ? route.params : DirScreenParams.getDefault();
+
+  const {colors} = useTheme();
 
   const [path, setPath] = useState<string>(() => '');
 
@@ -61,6 +64,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
         accessibilityLabel="Upload new file"
         iconProps={{name: 'plus'}}
         entering={FadeInDown}
+        android_ripple={{color: colors.secondary.shade10}}
       />
     </S.Root>
   );

@@ -5,8 +5,7 @@ import React, {FC} from 'react';
 import {StatusBar} from 'react-native';
 
 import {IconButton} from 'components';
-
-import {DirScreen, NetworkScreen} from 'screens';
+import {DirScreen, HomeScreen, NetworkScreen} from 'screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,7 +35,7 @@ export const Navigation: FC = () => {
           },
         }}>
         <Stack.Navigator
-          initialRouteName="NetworkScreen"
+          initialRouteName="HomeScreen"
           screenOptions={({navigation}) => ({
             headerShadowVisible: false,
             headerTitleAlign: 'center',
@@ -49,6 +48,11 @@ export const Navigation: FC = () => {
                 />
               ) : null,
           })}>
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{title: 'Your services'}}
+          />
           <Stack.Screen name="DirScreen" component={DirScreen} />
           <Stack.Screen
             name="NetworkScreen"

@@ -1,6 +1,6 @@
 import {NavigationProp, Route} from '@react-navigation/native';
 
-type Screens = 'DirScreen' | 'NetworkScreen';
+type Screens = 'DirScreen' | 'HomeScreen' | 'NetworkScreen';
 
 export type NavigationedScreen<
   N extends Screens,
