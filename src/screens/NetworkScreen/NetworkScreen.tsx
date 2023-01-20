@@ -1,6 +1,6 @@
 import React, {FC, useCallback, useLayoutEffect, useMemo} from 'react';
-import {Service} from 'react-native-zeroconf';
 import {FadeInDown} from 'react-native-reanimated';
+import {Service} from 'react-native-zeroconf';
 
 import {Lottie} from 'components';
 import {useNetworkServices} from 'hooks';
@@ -30,18 +30,25 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
     [navigation],
   );
 
-  if (!hasServices) return <LoadingScreen />;
+  const onManualPress = useCallback(
+    () => navigation.navigate('EditServiceScreen'),
+    [navigation],
+  );
+
+  if (!hasServices) return <LoadingScreen onManualPress={onManualPress} />;
 
   return (
     <S.Root>
-      {Object.keys(services).map((x, index) => (
-        <ServiceItem
-          key={x}
-          item={services[x]}
-          onPress={() => onItemPress(services[x])}
-          entering={FadeInDown.delay(index * 100)}
-        />
-      ))}
+      <S.ContentContainer>
+        {Object.keys(services).map((x, index) => (
+          <ServiceItem
+            key={x}
+            item={services[x]}
+            onPress={() => onItemPress(services[x])}
+            entering={FadeInDown.delay(index * 100)}
+          />
+        ))}
+      </S.ContentContainer>
     </S.Root>
   );
 };

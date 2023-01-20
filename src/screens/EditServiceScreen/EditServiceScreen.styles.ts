@@ -3,13 +3,6 @@ import {ScrollView, View} from 'react-native';
 
 import {Button, Text} from 'components';
 
-const LoadingRoot = styled(View)(({theme: {colors}}) => ({
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: colors.primary.tint40,
-}));
-
 const Root = styled(View)(() => ({
   flex: 1,
 }));
@@ -30,7 +23,6 @@ const AddManualButton = styled(Button)(({theme: {spacings}}) => ({
 }));
 
 export default {
-  LoadingRoot,
   Root,
   ContentContainer,
 

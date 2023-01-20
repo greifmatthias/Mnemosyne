@@ -5,7 +5,7 @@ import React, {FC} from 'react';
 import {StatusBar} from 'react-native';
 
 import {IconButton} from 'components';
-import {DirScreen, HomeScreen, NetworkScreen} from 'screens';
+import {DirScreen, EditServiceScreen, HomeScreen, NetworkScreen} from 'screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +54,11 @@ export const Navigation: FC = () => {
             options={{title: 'Your services'}}
           />
           <Stack.Screen name="DirScreen" component={DirScreen} />
+          <Stack.Screen
+            name="EditServiceScreen"
+            component={EditServiceScreen}
+            options={{title: 'Add Service'}}
+          />
           <Stack.Screen
             name="NetworkScreen"
             component={NetworkScreen}
