@@ -44,7 +44,10 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
   return (
     <S.Root>
       {!!path && (
-        <S.PathContainer entering={FadeInUp} exiting={FadeOutUp}>
+        <S.PathContainer
+          numberOfLines={1}
+          entering={FadeInUp}
+          exiting={FadeOutUp}>
           {path}
         </S.PathContainer>
       )}
@@ -62,7 +65,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
 
       <S.UploadButton
         accessibilityLabel="Upload new file"
-        iconProps={{name: 'plus'}}
+        iconProps={{name: 'upload-outline'}}
         entering={FadeInDown}
         android_ripple={{color: colors.secondary.shade10}}
       />

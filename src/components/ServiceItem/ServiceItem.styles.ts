@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 import {Pressable, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import {Button} from 'components';
+import {Button, IconButton} from 'components';
 
 type StyledWithOpen = {
   isOpen?: boolean;
@@ -23,13 +23,19 @@ const Root = styled(AnimatedPressable)<StyledWithOpen>(
 const HeaderContainer = styled(View)(({theme: {spacings}}) => ({
   flexDirection: 'row',
   alignItems: 'center',
-  paddingHorizontal: spacings.md,
+  paddingRight: spacings.md,
   paddingVertical: spacings.md,
 }));
 
 const QuickInfoContainer = styled(View)(({theme: {spacings}}) => ({
   flex: 1,
   paddingHorizontal: spacings.md,
+}));
+
+const ConnectIconButton = styled(IconButton)(({theme: {spacings}}) => ({
+  width: 42,
+  height: 42,
+  marginRight: spacings.lg,
 }));
 
 const DetailContainer = styled(Animated.View)(({theme: {spacings}}) => ({
@@ -63,6 +69,8 @@ export default {
 
   HeaderContainer,
   QuickInfoContainer,
+
+  ConnectIconButton,
 
   DetailContainer,
   DetailRow,

@@ -1,21 +1,27 @@
 import {useTheme} from '@emotion/react';
-import React, {FC, useCallback} from 'react';
+import React, {FC, useCallback, useState} from 'react';
 import {FadeInDown} from 'react-native-reanimated';
 import {Service} from 'react-native-zeroconf';
 
+import {ServiceItem} from 'components';
 import {useAppContext} from 'context';
 
 import S from './HomeScreen.styles';
 import {HomeScreenProps} from './HomeScreen.types';
-import {ServiceItem} from './ServiceItem';
 
 export const HomeScreen: FC<HomeScreenProps> = ({navigation}) => {
   const {colors} = useTheme();
   const {services} = useAppContext();
 
-  const onItemPress = useCallback(
+  const [openedService, setOpenedService] = useState<string>(() => '');
+
+  const onItemPress = useCallback((service: Partial<Service>) => {
+    setOpenedService(y => (service?.host === y ? '' : service?.host || ''));
+  }, []);
+
+  const onConnectPress = useCallback(
     (service: Partial<Service>) => {
-      if (service.host) navigation.navigate('NetworkScreen', {service});
+      if (service.host) navigation.navigate('DirScreen', {service});
     },
     [navigation],
   );
@@ -32,7 +38,9 @@ export const HomeScreen: FC<HomeScreenProps> = ({navigation}) => {
           <ServiceItem
             key={x.host}
             item={x}
+            isOpen={x.host === openedService}
             onPress={() => onItemPress(x)}
+            onConnectPress={() => onConnectPress(x)}
             entering={FadeInDown.delay(index * 100)}
           />
         ))}

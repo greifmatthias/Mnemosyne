@@ -9,5 +9,6 @@ export * from './Lottie';
 export * from './Pill';
 export * from './ProgressBar';
 export * from './ScrollToTop';
+export * from './ServiceItem';
 export * from './Text';
 export * from './TextInput';

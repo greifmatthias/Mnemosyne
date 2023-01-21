@@ -34,8 +34,6 @@ export const ServiceItem: FC<ServiceItemProps> = ({
     rotation.value = withSpring(isOpen ? 0 : 180);
   }, [isOpen, rotation]);
 
-  console.log(item);
-
   return (
     <S.Root
       isOpen={isOpen}
@@ -44,14 +42,19 @@ export const ServiceItem: FC<ServiceItemProps> = ({
         color: neutral.neutral10,
       }}>
       <S.HeaderContainer>
-        <Icon name="layers-outline" size="lg" />
-
         <S.QuickInfoContainer>
           <Text variant="lgbutton">{item.name}</Text>
           <Text variant="small">
             {item.host}:{item.port}
           </Text>
         </S.QuickInfoContainer>
+
+        {!isOpen && !!onConnectPress && (
+          <S.ConnectIconButton
+            iconProps={{name: 'login-outline'}}
+            onPress={onConnectPress}
+          />
+        )}
 
         <Animated.View style={[animatedStyle]}>
           <Icon name="arrow-upward" />
@@ -78,22 +81,29 @@ export const ServiceItem: FC<ServiceItemProps> = ({
               </S.DetailRow>
             ))}
 
-          <S.ActionsContainer
-            entering={FadeInDown.delay(200)}
-            onStartShouldSetResponder={() => true}>
-            <Button
-              iconLeft={{name: 'bookmark-outline'}}
-              onPress={onSavePress}
-              android_ripple={{color: primary.shade10}}>
-              Save
-            </Button>
-            <S.LastActionButton
-              iconLeft={{name: 'login-outline'}}
-              onPress={onConnectPress}
-              android_ripple={{color: primary.shade10}}>
-              Connect
-            </S.LastActionButton>
-          </S.ActionsContainer>
+          {(!!onSavePress || !!onConnectPress) && (
+            <S.ActionsContainer
+              entering={FadeInDown.delay(200)}
+              onStartShouldSetResponder={() => true}>
+              {!!onSavePress && (
+                <Button
+                  iconLeft={{name: 'bookmark-outline'}}
+                  onPress={onSavePress}
+                  android_ripple={{color: primary.shade10}}>
+                  Save
+                </Button>
+              )}
+
+              {!!onConnectPress && (
+                <S.LastActionButton
+                  iconLeft={{name: 'login-outline'}}
+                  onPress={onConnectPress}
+                  android_ripple={{color: primary.shade10}}>
+                  Connect
+                </S.LastActionButton>
+              )}
+            </S.ActionsContainer>
+          )}
         </S.DetailContainer>
       )}
     </S.Root>

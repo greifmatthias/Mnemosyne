@@ -8,14 +8,13 @@ import React, {
 import {FadeInDown} from 'react-native-reanimated';
 import {Service} from 'react-native-zeroconf';
 
-import {Lottie} from 'components';
+import {Lottie, ServiceItem} from 'components';
 import {useAppContext} from 'context';
 import {useNetworkServices} from 'hooks';
 
 import {LoadingScreen} from './LoadingScreen';
 import S from './NetworkScreen.styles';
 import {NetworkScreenProps} from './NetworkScreen.types';
-import {ServiceItem} from './ServiceItem';
 
 export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
   const {addService} = useAppContext();
