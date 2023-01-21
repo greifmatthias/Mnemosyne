@@ -10,5 +10,13 @@ export const useNetworkServiceMock: UseNetworkServicesReturn = {
       port: 80,
       txt: {},
     },
+    truenastest: {
+      addresses: ['192.168.0.161'],
+      fullName: '192.168.0.161._http._tcp',
+      host: '192.168.0.161',
+      name: 'truenas test',
+      port: 80,
+      txt: {},
+    },
   },
 };
