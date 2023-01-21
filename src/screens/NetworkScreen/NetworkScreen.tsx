@@ -9,6 +9,7 @@ import {FadeInDown} from 'react-native-reanimated';
 import {Service} from 'react-native-zeroconf';
 
 import {Lottie} from 'components';
+import {useAppContext} from 'context';
 import {useNetworkServices} from 'hooks';
 
 import {LoadingScreen} from './LoadingScreen';
@@ -17,6 +18,7 @@ import {NetworkScreenProps} from './NetworkScreen.types';
 import {ServiceItem} from './ServiceItem';
 
 export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
+  const {addService} = useAppContext();
   const {services} = useNetworkServices({
     // isTest: true,
   });
@@ -34,6 +36,17 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
   const onItemPress = useCallback((service: Partial<Service>) => {
     setOpenedService(y => (service?.host === y ? '' : service?.host || ''));
   }, []);
+
+  const onSavePress = useCallback(
+    (service: Partial<Service>) => {
+      if (service.host) {
+        addService(service as Service);
+
+        navigation.navigate('HomeScreen');
+      }
+    },
+    [navigation, addService],
+  );
 
   const onConnectPress = useCallback(
     (service: Partial<Service>) => {
@@ -58,6 +71,8 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
             item={services[x]}
             isOpen={openedService === services[x].host}
             onPress={() => onItemPress(services[x])}
+            onSavePress={() => onSavePress(services[x])}
+            onConnectPress={() => onConnectPress(services[x])}
             entering={FadeInDown.delay(index * 100)}
           />
         ))}

@@ -1,5 +1,4 @@
 import {useTheme} from '@emotion/react';
-import {Icon, Text} from 'components';
 import React, {FC, useEffect} from 'react';
 import Animated, {
   FadeInDown,
@@ -8,16 +7,20 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
+import {Button, Icon, Text} from 'components';
+
 import S from './ServiceItem.styles';
 import {ServiceItemProps} from './ServiceItem.types';
 
 export const ServiceItem: FC<ServiceItemProps> = ({
   item,
   isOpen = false,
+  onSavePress,
+  onConnectPress,
   ...props
 }) => {
   const {
-    colors: {neutral},
+    colors: {primary, neutral},
   } = useTheme();
   const rotation = useSharedValue(0);
 
@@ -74,6 +77,23 @@ export const ServiceItem: FC<ServiceItemProps> = ({
                 )}
               </S.DetailRow>
             ))}
+
+          <S.ActionsContainer
+            entering={FadeInDown.delay(200)}
+            onStartShouldSetResponder={() => true}>
+            <Button
+              iconLeft={{name: 'bookmark-outline'}}
+              onPress={onSavePress}
+              android_ripple={{color: primary.shade10}}>
+              Save
+            </Button>
+            <S.LastActionButton
+              iconLeft={{name: 'login-outline'}}
+              onPress={onConnectPress}
+              android_ripple={{color: primary.shade10}}>
+              Connect
+            </S.LastActionButton>
+          </S.ActionsContainer>
         </S.DetailContainer>
       )}
     </S.Root>

@@ -2,6 +2,8 @@ import styled from '@emotion/native';
 import {Pressable, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 
+import {Button} from 'components';
+
 type StyledWithOpen = {
   isOpen?: boolean;
 };
@@ -13,7 +15,8 @@ const Root = styled(AnimatedPressable)<StyledWithOpen>(
     borderTopWidth: isOpen ? 1 : 0,
     borderBottomWidth: isOpen ? 1 : 0,
     borderStyle: 'solid',
-    borderColor: colors.primary.base,
+    borderColor: colors.primary.tint10,
+    backgroundColor: isOpen ? colors.primary.tint40 : undefined,
   }),
 );
 
@@ -42,6 +45,19 @@ const DetailRow = styled(Animated.View)(({theme: {spacings}}) => ({
   paddingVertical: spacings.xxs,
 }));
 
+const ActionsContainer = styled(Animated.View)(({theme: {spacings}}) => ({
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  paddingTop: spacings.lg,
+  paddingBottom: spacings.xs,
+  zIndex: 999,
+}));
+
+const LastActionButton = styled(Button)(({theme: {spacings}}) => ({
+  marginLeft: spacings.xs,
+}));
+
 export default {
   Root,
 
@@ -50,4 +66,7 @@ export default {
 
   DetailContainer,
   DetailRow,
+
+  ActionsContainer,
+  LastActionButton,
 };
