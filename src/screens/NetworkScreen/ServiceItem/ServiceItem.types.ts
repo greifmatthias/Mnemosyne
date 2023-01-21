@@ -4,4 +4,7 @@ import {PressableProps} from 'react-native/types';
 
 export type ServiceItemProps = AnimateProps<PressableProps> & {
   item: Partial<Service>;
+  isOpen?: boolean;
+  onSavePress?: PressableProps['onPress'];
+  onConnectPress?: PressableProps['onPress'];
 };

@@ -27,7 +27,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({onManualPress}) => {
         onPress={onManualPress}
         android_ripple={{color: colors.primary.shade10}}
         entering={FadeInDown}>
-        Add manual service
+        Connect manually
       </S.AddManualButton>
     </S.LoadingRoot>
   );

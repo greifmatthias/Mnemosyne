@@ -1,4 +1,10 @@
-import React, {FC, useCallback, useLayoutEffect, useMemo} from 'react';
+import React, {
+  FC,
+  useCallback,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {FadeInDown} from 'react-native-reanimated';
 import {Service} from 'react-native-zeroconf';
 
@@ -12,8 +18,10 @@ import {ServiceItem} from './ServiceItem';
 
 export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
   const {services} = useNetworkServices({
-    // isTest: true
+    // isTest: true,
   });
+
+  const [openedService, setOpenedService] = useState<string>(() => '');
 
   const hasServices = useMemo(() => !!Object.keys(services).length, [services]);
 
@@ -23,7 +31,11 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
     });
   }, [navigation, hasServices]);
 
-  const onItemPress = useCallback(
+  const onItemPress = useCallback((service: Partial<Service>) => {
+    setOpenedService(y => (service?.host === y ? '' : service?.host || ''));
+  }, []);
+
+  const onConnectPress = useCallback(
     (service: Partial<Service>) => {
       if (service.host) navigation.navigate('DirScreen', {service});
     },
@@ -44,6 +56,7 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
           <ServiceItem
             key={x}
             item={services[x]}
+            isOpen={openedService === services[x].host}
             onPress={() => onItemPress(services[x])}
             entering={FadeInDown.delay(index * 100)}
           />
