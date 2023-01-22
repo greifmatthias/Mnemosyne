@@ -31,7 +31,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
   });
 
   const filesWhitoutItselfAndBack = useMemo(
-    () => files.filter(x => !['.', '..'].includes(x.name)),
+    () => (files || []).filter(x => !['.', '..'].includes(x.name)),
     [files],
   );
 
