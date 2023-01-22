@@ -1,6 +1,6 @@
-import {Service} from 'react-native-zeroconf';
+import {ConnectService} from 'types';
 
 export type AppContextInterface = {
-  services: Array<Service>;
-  addService: (service: Service) => void;
+  services: Array<ConnectService>;
+  addService: (service: ConnectService) => void;
 };

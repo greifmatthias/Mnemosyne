@@ -5,19 +5,19 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import {Service} from 'react-native-zeroconf';
 
 import {LocalServicesService} from 'services';
+import {ConnectService} from 'types';
 
 import {AppContextInterface} from './AppContext.types';
 
 export const AppContext = createContext<AppContextInterface>({
   services: [],
-  addService: (_service: Service) => {},
+  addService: (_service: ConnectService) => {},
 });
 
 export const AppProvider = ({children}: any) => {
-  const [services, setServices] = useState<Array<Service>>(() => []);
+  const [services, setServices] = useState<Array<ConnectService>>(() => []);
 
   //   Init load services
   useEffect(() => {
@@ -36,7 +36,7 @@ export const AppProvider = ({children}: any) => {
   }, [services]);
 
   //   Add new service
-  const addService = useCallback((newService: Service) => {
+  const addService = useCallback((newService: ConnectService) => {
     setServices(x => [...x, newService]);
   }, []);
 

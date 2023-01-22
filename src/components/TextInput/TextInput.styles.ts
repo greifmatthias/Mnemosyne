@@ -15,7 +15,7 @@ const InputElement = styled(TextInput)(
     flex: 1,
     color: colors.text,
     backgroundColor: colors.primary.tint40,
-    borderRadius: shapes.sm,
+    borderRadius: shapes.xs,
     paddingLeft: spacings.sm,
   }),
 );

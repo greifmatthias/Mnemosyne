@@ -1,4 +1,4 @@
-[![wakatime](https://wakatime.com/badge/user/8fd64d05-2a0b-433e-b862-88c53af4efd4/project/53a119ac-8239-4a54-b8a4-3905864df54e.svg)](https://wakatime.com/badge/user/8fd64d05-2a0b-433e-b862-88c53af4efd4/project/53a119ac-8239-4a54-b8a4-3905864df54e)
+[![wakatime](https://wakatime.com/badge/github/greifmatthias/Mnemosyne.svg?style=flat-square)](https://wakatime.com/badge/github/greifmatthias/Mnemosyne)
 
 # Mnemosyne
 >After the Greek goddes of memory.

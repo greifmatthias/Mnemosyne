@@ -9,7 +9,6 @@ import {FadeInDown} from 'react-native-reanimated';
 import {Service} from 'react-native-zeroconf';
 
 import {Lottie, ServiceItem} from 'components';
-import {useAppContext} from 'context';
 import {useNetworkServices} from 'hooks';
 
 import {LoadingScreen} from './LoadingScreen';
@@ -17,7 +16,6 @@ import S from './NetworkScreen.styles';
 import {NetworkScreenProps} from './NetworkScreen.types';
 
 export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
-  const {addService} = useAppContext();
   const {services} = useNetworkServices({
     // isTest: true,
   });
@@ -38,13 +36,9 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
 
   const onSavePress = useCallback(
     (service: Partial<Service>) => {
-      if (service.host) {
-        addService(service as Service);
-
-        navigation.navigate('HomeScreen');
-      }
+      if (service.host) navigation.navigate('EditServiceScreen', {service});
     },
-    [navigation, addService],
+    [navigation],
   );
 
   const onConnectPress = useCallback(
@@ -67,7 +61,7 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
         {Object.keys(services).map((x, index) => (
           <ServiceItem
             key={x}
-            item={services[x]}
+            item={{service: services[x]}}
             isOpen={openedService === services[x].host}
             onPress={() => onItemPress(services[x])}
             onSavePress={() => onSavePress(services[x])}
