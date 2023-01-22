@@ -37,7 +37,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
 
     if (showHidden) return output;
 
-    return output.filter(x => !x.name.startsWith('.'));
+    return output.filter(x => !x.hidden);
   }, [files, showHidden]);
 
   if (!service) return null;
