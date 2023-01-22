@@ -14,9 +14,15 @@ const Root = styled(View)(() => ({
   flex: 1,
 }));
 
-const PathContainer = styled(Text)(({theme: {colors, spacings}}) => ({
-  padding: spacings.md,
+const HeaderContainer = styled(View)(({theme: {colors, spacings}}) => ({
+  flexDirection: 'row',
+  alignItems: 'center',
+  padding: spacings.sm,
   backgroundColor: colors.primary.tint40,
+}));
+
+const PathContainer = styled(Text)(({theme: {spacings}}) => ({
+  paddingLeft: spacings.md,
 }));
 
 const Content = styled(ScrollView)(() => ({}));
@@ -34,6 +40,7 @@ export default {
   LoadingRoot,
   Root,
 
+  HeaderContainer,
   PathContainer,
 
   Content,

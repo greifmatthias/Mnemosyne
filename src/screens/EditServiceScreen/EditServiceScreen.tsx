@@ -23,7 +23,7 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
 
   const [name, setName] = useState<string>(() => service?.name || '');
   const [host, setHost] = useState<string>(() => service?.host || '');
-  const [port, setPort] = useState<number>(() => service?.port || 445);
+  const [port, setPort] = useState<string>(() => '445');
   const [folder, setFolder] = useState<string>(() => '');
   const [username, setUsername] = useState<string>(() => '');
   const [password, setPassword] = useState<string>(() => '');
@@ -33,7 +33,7 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
       service: {
         name,
         host,
-        port,
+        port: +port,
       },
       folder,
       username,
@@ -52,26 +52,26 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
           <S.Input
             title="Name"
             value={name}
-            onChange={e => setName(e.nativeEvent.text)}
+            onChange={e => setName(e.nativeEvent.text.trim())}
           />
 
           <S.AddressContainer>
             <S.Input
               title="Ip address"
               value={host}
-              onChange={e => setHost(e.nativeEvent.text)}
+              onChange={e => setHost(e.nativeEvent.text.trim())}
             />
             <S.PortInput
               title="Port"
               value={port.toString()}
-              onChange={e => setPort(+e.nativeEvent.text)}
+              onChange={e => setPort(e.nativeEvent.text.trim())}
             />
           </S.AddressContainer>
 
           <S.Input
             title="Shared folder"
             value={folder}
-            onChange={e => setFolder(e.nativeEvent.text)}
+            onChange={e => setFolder(e.nativeEvent.text.trim())}
           />
         </S.Section>
 
@@ -81,12 +81,12 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
           <S.Input
             title="Username"
             value={username}
-            onChange={e => setUsername(e.nativeEvent.text)}
+            onChange={e => setUsername(e.nativeEvent.text.trim())}
           />
           <S.Input
             title="Password"
             value={password}
-            onChange={e => setPassword(e.nativeEvent.text)}
+            onChange={e => setPassword(e.nativeEvent.text.trim())}
           />
         </S.Section>
       </S.ContentContainer>
