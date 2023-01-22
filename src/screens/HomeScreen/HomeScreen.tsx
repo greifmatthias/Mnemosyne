@@ -20,8 +20,8 @@ export const HomeScreen: FC<HomeScreenProps> = ({navigation}) => {
   }, []);
 
   const onConnectPress = useCallback(
-    ({service}: Partial<ConnectService>) => {
-      if (service?.host) navigation.navigate('DirScreen', {service});
+    (service: Partial<ConnectService>) => {
+      if (service?.service?.host) navigation.navigate('DirScreen', {service});
     },
     [navigation],
   );

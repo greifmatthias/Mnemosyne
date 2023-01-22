@@ -17,15 +17,15 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: service?.name,
+      headerTitle: service?.service.name,
     });
   }, [navigation, service]);
 
   const {files} = useSmbClient({
-    ip: service?.host,
-    sharedFolder: 'Data',
-    username: 'me',
-    password: '0889',
+    ip: service?.service.host,
+    sharedFolder: service?.folder,
+    username: service?.username,
+    password: service?.password,
     path,
     // isTest: true,
   });

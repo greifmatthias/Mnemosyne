@@ -2,7 +2,8 @@ import styled from '@emotion/native';
 import {Pressable, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import {Button, IconButton} from 'components';
+import {Button} from 'components/Button';
+import {IconButton} from 'components/IconButton';
 
 type StyledWithOpen = {
   isOpen?: boolean;

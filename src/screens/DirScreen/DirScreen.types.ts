@@ -1,10 +1,9 @@
-import {Service} from 'react-native-zeroconf';
-import {NavigationedScreen} from 'types';
+import {ConnectService, NavigationedScreen} from 'types';
 
 export type DirScreenProps = NavigationedScreen<'DirScreen', DirScreenParams>;
 
 export class DirScreenParams {
-  service?: Service;
+  service?: ConnectService;
 
   static getDefault = (): DirScreenParams => ({});
 }
