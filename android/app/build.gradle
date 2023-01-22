@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.mnemosyne"
+    namespace "be.greifmatthias.mnemosyne"
     defaultConfig {
-        applicationId "com.mnemosyne"
+        applicationId "be.greifmatthias.mnemosyne"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

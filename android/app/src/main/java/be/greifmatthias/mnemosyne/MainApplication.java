@@ -1,4 +1,4 @@
-package com.mnemosyne;
+package be.greifmatthias.mnemosyne;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
