@@ -33,9 +33,9 @@ export const useSmbClient = ({
       workGroup,
       username,
       password,
-      //   (data: ConnectCallback) => {
-      //     console.log('new SMBClient data (callback): ' + JSON.stringify(data));
-      //   },
+      (data: ConnectCallback) => {
+        console.log('new SMBClient data (callback): ' + JSON.stringify(data));
+      },
     );
   }, [ip, port, sharedFolder, workGroup, username, password]);
 
@@ -69,12 +69,13 @@ export const useSmbClient = ({
   useEffect(() => {
     if (isTest) setFiles(smbClientListMock.list);
 
-    if (client && !isTest) client.list(path, ({list}) => setFiles(list));
+    if (client && isConnected && !isTest)
+      client.list(path, ({list}) => setFiles(list));
 
     return () => {
       setFiles([]);
     };
-  }, [client, path, isTest]);
+  }, [client, isConnected, path, isTest]);
 
   return {
     isConnected,

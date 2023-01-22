@@ -23,7 +23,7 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
 
   const [name, setName] = useState<string>(() => service?.name || '');
   const [host, setHost] = useState<string>(() => service?.host || '');
-  const [port, setPort] = useState<number>(() => service?.port || 80);
+  const [port, setPort] = useState<number>(() => service?.port || 445);
   const [folder, setFolder] = useState<string>(() => '');
   const [username, setUsername] = useState<string>(() => '');
   const [password, setPassword] = useState<string>(() => '');
