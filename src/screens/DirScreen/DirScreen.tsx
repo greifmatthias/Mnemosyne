@@ -14,6 +14,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
   const {colors} = useTheme();
 
   const [path, setPath] = useState<string>(() => '');
+  const [showHidden, setShowHidden] = useState<boolean>(() => false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,10 +31,13 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
     // isTest: true,
   });
 
-  const filesWhitoutItselfAndBack = useMemo(
-    () => (files || []).filter(x => !['.', '..'].includes(x.name)),
-    [files],
-  );
+  const filteredFiles = useMemo(() => {
+    const output = (files || []).filter(x => !['.', '..'].includes(x.name));
+
+    if (showHidden) return output;
+
+    return output.filter(x => !x.name.startsWith('.'));
+  }, [files, showHidden]);
 
   if (!service) return null;
 
@@ -53,7 +57,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
       )}
 
       <S.Content>
-        {filesWhitoutItselfAndBack.map((x, index) => (
+        {filteredFiles.map((x, index) => (
           <FileItem
             key={x.name}
             item={x}
