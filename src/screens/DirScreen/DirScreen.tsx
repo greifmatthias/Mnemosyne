@@ -38,7 +38,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
   if (!service) return null;
 
   const onItemPress = (item: TFileItem) => {
-    if (item.isDirectory) setPath(x => `${x}/${item.name}`);
+    if (item.isDirectory) setPath(x => `${x}${item.name}/`);
   };
 
   return (
