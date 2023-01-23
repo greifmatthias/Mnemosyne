@@ -25,6 +25,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
 
   const {files} = useSmbClient({
     ip: service?.service.host,
+    port: (service?.service.port || 445).toString(),
     sharedFolder: service?.folder,
     username: service?.username,
     password: service?.password,
