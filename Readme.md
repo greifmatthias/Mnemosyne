@@ -17,17 +17,17 @@ This is a work in progress SMB mobile client made in react-native (for Android o
 
 ## Roadmap
 > Firstly I need to get this app up and running for doing the basic needs.
-* Discover services in LAN.
+
+* ~~Discover services in LAN.~~
 * Save services for quick access. (store/update/delete)
-* SMB connect to a service. (sharedfolders, auth, ..)
-* Read directory and files.
+* ~~SMB connect to a service. (sharedfolders, auth, ..)~~
+* ~~Read directory and files.~~
 * Manage directory and files. (move/rename/delete/add folder)
 * Download files to device.
 * Upload files to service.
 * Adding tests *urgh kill me already*
 
 > Later on
-* Save services for specific networks?
 * Theming. (dark/light/accent colors)
 * Add support for other types of network storage?
 * Background backup?
