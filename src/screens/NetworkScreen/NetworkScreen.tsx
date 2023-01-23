@@ -43,7 +43,15 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
 
   const onConnectPress = useCallback(
     (service: Partial<Service>) => {
-      if (service.host) navigation.navigate('DirScreen', {service: {service}});
+      if (service.host)
+        navigation.navigate('DirScreen', {
+          service: {
+            service: {
+              ...service,
+              port: 445,
+            },
+          },
+        });
     },
     [navigation],
   );
