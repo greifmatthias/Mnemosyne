@@ -20,7 +20,7 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
     ? route.params
     : EditServiceScreenParams.getDefault();
 
-  const {addService} = useService();
+  const {add} = useService();
   const {colors} = useTheme();
 
   const [name, setName] = useState<string>(() => service?.name || '');
@@ -43,10 +43,10 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
       password,
     };
 
-    addService(newService);
+    add(newService);
 
     navigation.navigate<any>('HomeScreen', {selectedService: newService});
-  }, [navigation, addService, name, host, port, folder, username, password]);
+  }, [navigation, add, name, host, port, folder, username, password]);
 
   return (
     <S.Root>

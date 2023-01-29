@@ -6,6 +6,8 @@ import {ConnectService} from 'types';
 export type ServiceItemProps = AnimateProps<PressableProps> & {
   item: Partial<ConnectService>;
   isOpen?: boolean;
-  onSavePress?: PressableProps['onPress'];
+  editMode?: 'edit' | 'save';
+  onRemovePress?: PressableProps['onPress'];
+  onEditPress?: PressableProps['onPress'];
   onConnectPress?: PressableProps['onPress'];
 };

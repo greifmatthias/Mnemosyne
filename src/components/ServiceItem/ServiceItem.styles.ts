@@ -55,10 +55,22 @@ const DetailRow = styled(Animated.View)(({theme: {spacings}}) => ({
 const ActionsContainer = styled(Animated.View)(({theme: {spacings}}) => ({
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'flex-end',
   paddingTop: spacings.lg,
   paddingBottom: spacings.xs,
   zIndex: 999,
+}));
+
+const RemoveButton = styled(IconButton)(({theme: {colors}}) => ({
+  width: 44,
+  height: 44,
+  backgroundColor: colors.tertiary.base,
+}));
+
+const RightActionsContainer = styled(Animated.View)(() => ({
+  flex: 1,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
 }));
 
 const LastActionButton = styled(Button)(({theme: {spacings}}) => ({
@@ -77,5 +89,7 @@ export default {
   DetailRow,
 
   ActionsContainer,
+  RemoveButton,
+  RightActionsContainer,
   LastActionButton,
 };

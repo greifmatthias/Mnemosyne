@@ -13,7 +13,9 @@ import {ServiceContextInterface} from './ServiceContext.types';
 
 export const ServiceContext = createContext<ServiceContextInterface>({
   services: [],
-  addService: (_service: ConnectService) => {},
+  add: (_service: ConnectService) => {},
+  edit: (_service: ConnectService) => {},
+  remove: (_service: ConnectService) => {},
 });
 
 export const ServiceProvider = ({children}: any) => {
@@ -36,12 +38,26 @@ export const ServiceProvider = ({children}: any) => {
   }, [services]);
 
   //   Add new service
-  const addService = useCallback((newService: ConnectService) => {
+  const add = useCallback((newService: ConnectService) => {
     setServices(x => [...x, newService]);
   }, []);
 
+  //   Remove service
+  const edit = useCallback((editedService: ConnectService) => {
+    setServices(x => {
+      const oldServices = [...x].filter(y => y.id !== editedService.id);
+
+      return [editedService, ...oldServices];
+    });
+  }, []);
+
+  //   Remove service
+  const remove = useCallback(({id}: ConnectService) => {
+    setServices(x => x.filter(y => y.id !== id));
+  }, []);
+
   return (
-    <ServiceContext.Provider value={{services, addService}}>
+    <ServiceContext.Provider value={{services, add, edit, remove}}>
       {children}
     </ServiceContext.Provider>
   );

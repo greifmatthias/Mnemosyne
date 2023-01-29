@@ -80,8 +80,9 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
             key={x}
             item={{service: services[x]}}
             isOpen={openedService === services[x].host}
+            editMode="save"
             onPress={() => onItemPress(services[x])}
-            onSavePress={() => onSavePress(services[x])}
+            onEditPress={() => onSavePress(services[x])}
             onConnectPress={() => onConnectPress(services[x])}
             entering={FadeInDown.delay(index * 100)}
           />

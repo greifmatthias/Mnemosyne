@@ -11,7 +11,7 @@ import {HomeScreenProps} from './HomeScreen.types';
 
 export const HomeScreen: FC<HomeScreenProps> = ({navigation, route}) => {
   const {colors} = useTheme();
-  const {services} = useService();
+  const {services, remove} = useService();
 
   const [openedService, setOpenedService] = useState<string>(() => '');
 
@@ -23,6 +23,17 @@ export const HomeScreen: FC<HomeScreenProps> = ({navigation, route}) => {
   const onItemPress = useCallback(({id}: ConnectService) => {
     setOpenedService(y => (id === y ? '' : id));
   }, []);
+
+  const onEditPress = useCallback(
+    (service: ConnectService) =>
+      navigation.navigate<any>('EditServiceScreen', {service}),
+    [navigation],
+  );
+
+  const onRemovePress = useCallback(
+    (service: ConnectService) => remove(service),
+    [remove],
+  );
 
   const onConnectPress = useCallback(
     (service: ConnectService) =>
@@ -44,6 +55,8 @@ export const HomeScreen: FC<HomeScreenProps> = ({navigation, route}) => {
             item={x}
             isOpen={x.id === openedService}
             onPress={() => onItemPress(x)}
+            onRemovePress={() => onRemovePress(x)}
+            onEditPress={() => onEditPress(x)}
             onConnectPress={() => onConnectPress(x)}
             entering={FadeInDown.delay(index * 100)}
           />

@@ -15,12 +15,14 @@ import {ServiceItemProps} from './ServiceItem.types';
 export const ServiceItem: FC<ServiceItemProps> = ({
   item: {service},
   isOpen = false,
-  onSavePress,
+  editMode = 'edit',
+  onRemovePress,
+  onEditPress,
   onConnectPress,
   ...props
 }) => {
   const {
-    colors: {primary, neutral},
+    colors: {primary, tertiary, neutral},
   } = useTheme();
   const rotation = useSharedValue(0);
 
@@ -81,27 +83,42 @@ export const ServiceItem: FC<ServiceItemProps> = ({
               </S.DetailRow>
             ))}
 
-          {(!!onSavePress || !!onConnectPress) && (
+          {(!!onEditPress || !!onRemovePress || !!onConnectPress) && (
             <S.ActionsContainer
               entering={FadeInDown.delay(200)}
               onStartShouldSetResponder={() => true}>
-              {!!onSavePress && (
-                <Button
-                  iconLeft={{name: 'bookmark-outline'}}
-                  onPress={onSavePress}
-                  android_ripple={{color: primary.shade10}}>
-                  Save
-                </Button>
+              {!!onRemovePress && (
+                <S.RemoveButton
+                  iconProps={{name: 'trash-outline', size: 'sm'}}
+                  onPress={onRemovePress}
+                  android_ripple={{color: tertiary.shade10}}
+                />
               )}
 
-              {!!onConnectPress && (
-                <S.LastActionButton
-                  iconLeft={{name: 'login-outline'}}
-                  onPress={onConnectPress}
-                  android_ripple={{color: primary.shade10}}>
-                  Connect
-                </S.LastActionButton>
-              )}
+              <S.RightActionsContainer>
+                {!!onEditPress && (
+                  <Button
+                    iconLeft={{
+                      name:
+                        editMode === 'edit'
+                          ? 'edit-outline'
+                          : 'bookmark-outline',
+                    }}
+                    onPress={onEditPress}
+                    android_ripple={{color: primary.shade10}}>
+                    {editMode === 'edit' ? 'Edit' : 'Save'}
+                  </Button>
+                )}
+
+                {!!onConnectPress && (
+                  <S.LastActionButton
+                    iconLeft={{name: 'login-outline'}}
+                    onPress={onConnectPress}
+                    android_ripple={{color: primary.shade10}}>
+                    Connect
+                  </S.LastActionButton>
+                )}
+              </S.RightActionsContainer>
             </S.ActionsContainer>
           )}
         </S.DetailContainer>
