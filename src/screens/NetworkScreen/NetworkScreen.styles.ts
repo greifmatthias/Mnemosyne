@@ -1,7 +1,11 @@
 import styled from '@emotion/native';
 import {ScrollView, View} from 'react-native';
 
-import {Button, Text} from 'components';
+import {Button, IconButton, Text} from 'components';
+
+const AddIconButton = styled(IconButton)(({theme: {spacings}}) => ({
+  marginRight: spacings.md,
+}));
 
 const LoadingRoot = styled(View)(({theme: {colors}}) => ({
   flex: 1,
@@ -30,6 +34,8 @@ const AddManualButton = styled(Button)(({theme: {spacings}}) => ({
 }));
 
 export default {
+  AddIconButton,
+
   LoadingRoot,
   Root,
   ContentContainer,

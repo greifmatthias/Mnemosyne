@@ -62,7 +62,7 @@ export const Navigation: FC = () => {
           <Stack.Screen
             name="NetworkScreen"
             component={NetworkScreen}
-            options={{title: 'Services nearby'}}
+            options={{title: 'Search'}}
           />
         </Stack.Navigator>
       </NavigationContainer>

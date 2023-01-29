@@ -24,22 +24,31 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
 
   const hasServices = useMemo(() => !!Object.keys(services).length, [services]);
 
+  const onSavePress = useCallback(
+    (service?: Partial<Service>) => {
+      navigation.navigate('EditServiceScreen', {service});
+    },
+    [navigation],
+  );
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => hasServices && <Lottie name="pulse" size="xs" />,
+      headerRight: () => (
+        <>
+          <S.AddIconButton
+            iconProps={{name: 'plus-circle-outline'}}
+            onPress={() => onSavePress()}
+          />
+
+          {hasServices && <Lottie name="pulse" size="xs" />}
+        </>
+      ),
     });
-  }, [navigation, hasServices]);
+  }, [navigation, hasServices, onSavePress]);
 
   const onItemPress = useCallback((service: Partial<Service>) => {
     setOpenedService(y => (service?.host === y ? '' : service?.host || ''));
   }, []);
-
-  const onSavePress = useCallback(
-    (service: Partial<Service>) => {
-      if (service.host) navigation.navigate('EditServiceScreen', {service});
-    },
-    [navigation],
-  );
 
   const onConnectPress = useCallback(
     (service: Partial<Service>) => {

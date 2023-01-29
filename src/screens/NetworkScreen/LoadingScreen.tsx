@@ -19,11 +19,11 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({onManualPress}) => {
 
       <S.HintText variant="small">
         Looking for services in your LAN, make sure you are connected to the
-        same network as the service you want to use
+        same network as the service you want to use. Or connect to one manually.
       </S.HintText>
 
       <S.AddManualButton
-        iconLeft={{name: 'plus'}}
+        iconLeft={{name: 'plus-circle-outline'}}
         onPress={onManualPress}
         android_ripple={{color: colors.primary.shade10}}
         entering={FadeInDown}>
