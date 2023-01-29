@@ -1,8 +1,10 @@
-import React, {FC, useCallback, useState} from 'react';
 import {useTheme} from '@emotion/react';
+import React, {FC, useCallback, useState} from 'react';
 import {FadeInDown} from 'react-native-reanimated';
+import uuid from 'react-native-uuid';
 
 import {useAppContext} from 'context';
+import {ConnectService} from 'types';
 
 import S from './EditServiceScreen.styles';
 import {
@@ -29,7 +31,8 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
   const [password, setPassword] = useState<string>(() => '');
 
   const onSavePress = useCallback(() => {
-    addService({
+    const newService: ConnectService = {
+      id: uuid.v4().toString(),
       service: {
         name,
         host,
@@ -38,9 +41,11 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
       folder,
       username,
       password,
-    });
+    };
 
-    navigation.navigate('HomeScreen');
+    addService(newService);
+
+    navigation.navigate<any>('HomeScreen', {selectedService: newService});
   }, [navigation, addService, name, host, port, folder, username, password]);
 
   return (
