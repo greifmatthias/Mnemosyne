@@ -3,7 +3,7 @@ import React, {FC, useCallback, useEffect, useState} from 'react';
 import {FadeInDown} from 'react-native-reanimated';
 
 import {ServiceItem} from 'components';
-import {useAppContext} from 'context';
+import {useService} from 'context';
 import {ConnectService} from 'types';
 
 import S from './HomeScreen.styles';
@@ -11,7 +11,7 @@ import {HomeScreenProps} from './HomeScreen.types';
 
 export const HomeScreen: FC<HomeScreenProps> = ({navigation, route}) => {
   const {colors} = useTheme();
-  const {services} = useAppContext();
+  const {services} = useService();
 
   const [openedService, setOpenedService] = useState<string>(() => '');
 

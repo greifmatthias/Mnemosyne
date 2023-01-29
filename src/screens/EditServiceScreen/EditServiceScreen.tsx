@@ -3,7 +3,7 @@ import React, {FC, useCallback, useState} from 'react';
 import {FadeInDown} from 'react-native-reanimated';
 import uuid from 'react-native-uuid';
 
-import {useAppContext} from 'context';
+import {useService} from 'context';
 import {ConnectService} from 'types';
 
 import S from './EditServiceScreen.styles';
@@ -20,7 +20,7 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
     ? route.params
     : EditServiceScreenParams.getDefault();
 
-  const {addService} = useAppContext();
+  const {addService} = useService();
   const {colors} = useTheme();
 
   const [name, setName] = useState<string>(() => service?.name || '');

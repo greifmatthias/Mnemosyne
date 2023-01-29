@@ -9,14 +9,14 @@ import React, {
 import {LocalServicesService} from 'services';
 import {ConnectService} from 'types';
 
-import {AppContextInterface} from './AppContext.types';
+import {ServiceContextInterface} from './ServiceContext.types';
 
-export const AppContext = createContext<AppContextInterface>({
+export const ServiceContext = createContext<ServiceContextInterface>({
   services: [],
   addService: (_service: ConnectService) => {},
 });
 
-export const AppProvider = ({children}: any) => {
+export const ServiceProvider = ({children}: any) => {
   const [services, setServices] = useState<Array<ConnectService>>(() => []);
 
   //   Init load services
@@ -41,10 +41,10 @@ export const AppProvider = ({children}: any) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{services, addService}}>
+    <ServiceContext.Provider value={{services, addService}}>
       {children}
-    </AppContext.Provider>
+    </ServiceContext.Provider>
   );
 };
 
-export const useAppContext = () => useContext(AppContext);
+export const useService = () => useContext(ServiceContext);
