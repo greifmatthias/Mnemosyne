@@ -13,7 +13,7 @@ import {
 export const useSmbClient = ({
   ip,
   sharedFolder = '',
-  port = '',
+  port = '445',
   workGroup = '',
   username = '',
   password = '',
