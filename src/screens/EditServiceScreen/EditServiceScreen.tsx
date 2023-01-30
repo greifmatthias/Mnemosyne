@@ -44,11 +44,11 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
     if (!!name && !!host && !!folder) {
       const newService: ConnectService = {
         id: service?.id || uuid.v4().toString(),
-        name,
-        host,
-        port: +port,
-        folder,
-        username,
+        name: name.trim(),
+        host: host.trim(),
+        port: +port.trim(),
+        folder: folder.trim(),
+        username: username.trim(),
         password,
       };
 
@@ -79,26 +79,26 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
           <S.Input
             title="Name"
             value={name}
-            onChange={e => setName(e.nativeEvent.text.trim())}
+            onChange={e => setName(e.nativeEvent.text)}
           />
 
           <S.AddressContainer>
             <S.Input
               title="Ip address"
               value={host}
-              onChange={e => setHost(e.nativeEvent.text.trim())}
+              onChange={e => setHost(e.nativeEvent.text)}
             />
             <S.PortInput
               title="Port"
               value={port.toString()}
-              onChange={e => setPort(e.nativeEvent.text.trim())}
+              onChange={e => setPort(e.nativeEvent.text)}
             />
           </S.AddressContainer>
 
           <S.Input
             title="Shared folder"
             value={folder}
-            onChange={e => setFolder(e.nativeEvent.text.trim())}
+            onChange={e => setFolder(e.nativeEvent.text)}
           />
         </S.Section>
 
@@ -108,12 +108,12 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
           <S.Input
             title="Username"
             value={username}
-            onChange={e => setUsername(e.nativeEvent.text.trim())}
+            onChange={e => setUsername(e.nativeEvent.text)}
           />
           <S.Input
             title="Password"
             value={password}
-            onChange={e => setPassword(e.nativeEvent.text.trim())}
+            onChange={e => setPassword(e.nativeEvent.text)}
           />
         </S.Section>
       </S.ContentContainer>

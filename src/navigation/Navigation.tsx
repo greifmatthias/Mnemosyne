@@ -57,7 +57,6 @@ export const Navigation: FC = () => {
           <Stack.Screen
             name="EditServiceScreen"
             component={EditServiceScreen}
-            options={{title: 'Add Service'}}
           />
           <Stack.Screen
             name="NetworkScreen"
