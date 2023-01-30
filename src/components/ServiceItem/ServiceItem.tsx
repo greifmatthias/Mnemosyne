@@ -13,7 +13,7 @@ import S from './ServiceItem.styles';
 import {ServiceItemProps} from './ServiceItem.types';
 
 export const ServiceItem: FC<ServiceItemProps> = ({
-  item: {service},
+  item,
   isOpen = false,
   editMode = 'edit',
   onRemovePress,
@@ -45,9 +45,9 @@ export const ServiceItem: FC<ServiceItemProps> = ({
       }}>
       <S.HeaderContainer>
         <S.QuickInfoContainer>
-          <Text variant="lgbutton">{service?.name}</Text>
+          <Text variant="lgbutton">{item?.name}</Text>
           <Text variant="small">
-            {service?.host}:{service?.port}
+            {item?.host}:{item?.port}
           </Text>
         </S.QuickInfoContainer>
 
@@ -65,21 +65,13 @@ export const ServiceItem: FC<ServiceItemProps> = ({
 
       {isOpen && (
         <S.DetailContainer>
-          {Object.keys(service || {})
+          {Object.keys(item || {})
             .filter(x => x !== 'txt')
             .map((x, index) => (
               <S.DetailRow key={x} entering={FadeInDown.delay(index * 100)}>
                 <Text variant="mdbutton">{x}</Text>
 
-                {x === 'addresses' ? (
-                  service?.addresses?.map(y => (
-                    <Text key={y} variant="small">
-                      {y}
-                    </Text>
-                  ))
-                ) : (
-                  <Text variant="small">{(service as any)[x]}</Text>
-                )}
+                <Text variant="small">{(item as any)[x]}</Text>
               </S.DetailRow>
             ))}
 

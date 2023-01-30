@@ -1,8 +1,7 @@
 import {Service} from 'react-native-zeroconf';
 
-export type ConnectService = {
+export type ConnectService = Omit<Service, 'fullName' | 'addresses' | 'txt'> & {
   id: string;
-  service: Partial<Service>;
   folder: string;
   username?: string;
   password?: string;

@@ -1,6 +1,4 @@
-import {Service} from 'react-native-zeroconf';
-
-import {NavigationedScreen} from 'types';
+import {ConnectService, NavigationedScreen} from 'types';
 
 export type EditServiceScreenProps = NavigationedScreen<
   'EditServiceScreen',
@@ -8,7 +6,7 @@ export type EditServiceScreenProps = NavigationedScreen<
 >;
 
 export class EditServiceScreenParams {
-  service?: Service;
+  service?: ConnectService;
 
   static getDefault = (): EditServiceScreenParams => ({});
 }

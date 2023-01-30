@@ -55,10 +55,8 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
       if (service.host)
         navigation.navigate('DirScreen', {
           service: {
-            service: {
-              ...service,
-              port: 445,
-            },
+            ...service,
+            port: 445,
           },
         });
     },
@@ -78,7 +76,7 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
         {Object.keys(services).map((x, index) => (
           <ServiceItem
             key={x}
-            item={{service: services[x]}}
+            item={services[x]}
             isOpen={openedService === services[x].host}
             editMode="save"
             onPress={() => onItemPress(services[x])}

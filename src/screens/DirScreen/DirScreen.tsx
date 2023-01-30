@@ -19,13 +19,13 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: service?.service.name,
+      headerTitle: service?.name,
     });
   }, [navigation, service]);
 
   const {files} = useSmbClient({
-    ip: service?.service.host,
-    port: (service?.service.port || 445).toString(),
+    ip: service?.host,
+    port: service?.port?.toString(),
     sharedFolder: service?.folder,
     username: service?.username,
     password: service?.password,

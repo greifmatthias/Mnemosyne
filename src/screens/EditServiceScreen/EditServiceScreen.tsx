@@ -1,5 +1,5 @@
 import {useTheme} from '@emotion/react';
-import React, {FC, useCallback, useState} from 'react';
+import React, {FC, useCallback, useLayoutEffect, useState} from 'react';
 import {FadeInDown} from 'react-native-reanimated';
 import uuid from 'react-native-uuid';
 
@@ -20,33 +20,55 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
     ? route.params
     : EditServiceScreenParams.getDefault();
 
-  const {add} = useService();
+  const {add, edit} = useService();
   const {colors} = useTheme();
 
   const [name, setName] = useState<string>(() => service?.name || '');
   const [host, setHost] = useState<string>(() => service?.host || '');
   const [port, setPort] = useState<string>(() => '445');
-  const [folder, setFolder] = useState<string>(() => '');
-  const [username, setUsername] = useState<string>(() => '');
-  const [password, setPassword] = useState<string>(() => '');
+  const [folder, setFolder] = useState<string>(() => service?.folder || '');
+  const [username, setUsername] = useState<string>(
+    () => service?.username || '',
+  );
+  const [password, setPassword] = useState<string>(
+    () => service?.password || '',
+  );
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: service ? 'Edit service' : 'Add service',
+    });
+  }, [navigation, service]);
 
   const onSavePress = useCallback(() => {
-    const newService: ConnectService = {
-      id: uuid.v4().toString(),
-      service: {
+    if (!!name && !!host && !!folder) {
+      const newService: ConnectService = {
+        id: service?.id || uuid.v4().toString(),
         name,
         host,
         port: +port,
-      },
-      folder,
-      username,
-      password,
-    };
+        folder,
+        username,
+        password,
+      };
 
-    add(newService);
+      if (service?.id) edit(newService);
+      else add(newService);
 
-    navigation.navigate<any>('HomeScreen', {selectedService: newService});
-  }, [navigation, add, name, host, port, folder, username, password]);
+      navigation.navigate<any>('HomeScreen', {selectedService: newService});
+    }
+  }, [
+    navigation,
+    add,
+    edit,
+    service,
+    name,
+    host,
+    port,
+    folder,
+    username,
+    password,
+  ]);
 
   return (
     <S.Root>
