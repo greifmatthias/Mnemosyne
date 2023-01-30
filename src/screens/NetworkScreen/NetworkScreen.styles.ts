@@ -1,10 +1,16 @@
 import styled from '@emotion/native';
 import {ScrollView, View} from 'react-native';
 
-import {Button, IconButton, Text} from 'components';
+import {Button, Lottie, Text} from 'components';
 
-const AddIconButton = styled(IconButton)(({theme: {spacings}}) => ({
-  marginRight: spacings.md,
+const HeaderContainer = styled(View)(() => ({
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+}));
+
+const SearchLottie = styled(Lottie)(({theme: {spacings}}) => ({
+  marginLeft: spacings.xxs,
 }));
 
 const LoadingRoot = styled(View)(({theme: {colors}}) => ({
@@ -23,7 +29,7 @@ const ContentContainer = styled(ScrollView)(() => ({}));
 const HintText = styled(Text)(({theme: {spacings}}) => ({
   width: '80%',
   maxWidth: 280,
-  marginTop: spacings.lg,
+  marginTop: spacings.xxl,
   textAlign: 'center',
 }));
 
@@ -34,7 +40,8 @@ const AddManualButton = styled(Button)(({theme: {spacings}}) => ({
 }));
 
 export default {
-  AddIconButton,
+  HeaderContainer,
+  SearchLottie,
 
   LoadingRoot,
   Root,

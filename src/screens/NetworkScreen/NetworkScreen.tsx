@@ -8,7 +8,7 @@ import React, {
 import {FadeInDown} from 'react-native-reanimated';
 import {Service} from 'react-native-zeroconf';
 
-import {Lottie, ServiceItem} from 'components';
+import {IconButton, ServiceItem} from 'components';
 import {useNetworkServices} from 'hooks';
 
 import {LoadingScreen} from './LoadingScreen';
@@ -34,14 +34,14 @@ export const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <>
-          <S.AddIconButton
+        <S.HeaderContainer>
+          <IconButton
             iconProps={{name: 'plus-circle-outline'}}
             onPress={() => onSavePress()}
           />
 
-          {hasServices && <Lottie name="pulse" size="xs" />}
-        </>
+          {hasServices && <S.SearchLottie name="pulse" size="xs" />}
+        </S.HeaderContainer>
       ),
     });
   }, [navigation, hasServices, onSavePress]);
