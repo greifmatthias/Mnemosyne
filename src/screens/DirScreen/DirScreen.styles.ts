@@ -27,6 +27,11 @@ const PathContainer = styled(Text)(({theme: {spacings}}) => ({
 
 const Content = styled(ScrollView)(() => ({}));
 
+const GroupText = styled(Text)(({theme: {colors, spacings}}) => ({
+  margin: spacings.md,
+  color: colors.neutral.neutral60,
+}));
+
 const UploadButton = styled(IconButton)(({theme: {colors, spacings}}) => ({
   width: 56,
   height: 56,
@@ -44,6 +49,7 @@ export default {
   PathContainer,
 
   Content,
+  GroupText,
 
   UploadButton,
 };

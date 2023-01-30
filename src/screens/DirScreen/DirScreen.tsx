@@ -1,6 +1,10 @@
 import {useTheme} from '@emotion/react';
 import React, {FC, useLayoutEffect, useMemo, useState} from 'react';
-import {FadeInDown, FadeInUp, FadeOutUp} from 'react-native-reanimated';
+import Animated, {
+  FadeInDown,
+  FadeInUp,
+  FadeOutUp,
+} from 'react-native-reanimated';
 
 import {IconButton} from 'components';
 import {FileItem as TFileItem, useSmbClient} from 'hooks';
@@ -23,7 +27,7 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
     });
   }, [navigation, service]);
 
-  const {files} = useSmbClient({
+  const {files: serverfiles} = useSmbClient({
     ip: service?.host,
     port: service?.port?.toString(),
     sharedFolder: service?.folder,
@@ -33,13 +37,27 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
     // isTest: true,
   });
 
-  const filteredFiles = useMemo(() => {
-    const output = (files || []).filter(x => !['.', '..'].includes(x.name));
+  const groupedFiles = useMemo(() => {
+    const filesWithoutNav = (serverfiles || []).filter(
+      x => !['.', '..'].includes(x.name),
+    );
 
-    if (showHidden) return output;
+    const hiddenOutput = showHidden
+      ? filesWithoutNav
+      : filesWithoutNav.filter(x => !x.hidden);
 
-    return output.filter(x => !x.hidden);
-  }, [files, showHidden]);
+    const output: {files: Array<TFileItem>; folders: Array<TFileItem>} = {
+      folders: [],
+      files: [],
+    };
+
+    hiddenOutput.forEach(x => {
+      if (x.isDirectory) output.folders.push(x);
+      else output.files.push(x);
+    });
+
+    return output;
+  }, [serverfiles, showHidden]);
 
   if (!service) return null;
 
@@ -77,14 +95,32 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
       )}
 
       <S.Content>
-        {filteredFiles.map((x, index) => (
-          <FileItem
-            key={x.name}
-            item={x}
-            entering={FadeInDown.delay(index * 50)}
-            onPress={() => onItemPress(x)}
-          />
-        ))}
+        {Object.keys(groupedFiles).map((x, xindex) => {
+          const overIndex =
+            (groupedFiles as any)[Object.keys(groupedFiles)[xindex - 1]]
+              ?.length || 0;
+
+          return (
+            !!(groupedFiles as any)[x].length && (
+              <Animated.View key={x}>
+                <S.GroupText
+                  variant="mdbutton"
+                  entering={FadeInDown.delay(overIndex * 50)}>
+                  {x}
+                </S.GroupText>
+
+                {(groupedFiles as any)[x].map((y: TFileItem, index: number) => (
+                  <FileItem
+                    key={y.name}
+                    item={y}
+                    entering={FadeInDown.delay(overIndex + index * 50)}
+                    onPress={() => onItemPress(y)}
+                  />
+                ))}
+              </Animated.View>
+            )
+          );
+        })}
       </S.Content>
 
       <S.UploadButton
