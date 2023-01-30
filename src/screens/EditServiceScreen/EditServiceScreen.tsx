@@ -84,13 +84,16 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
 
           <S.AddressContainer>
             <S.Input
-              title="Ip address"
+              title="Host (ip address or url)"
+              keyboardType="url"
               value={host}
               onChange={e => setHost(e.nativeEvent.text)}
             />
             <S.PortInput
               title="Port"
               value={port.toString()}
+              autoComplete="cc-number"
+              keyboardType="number-pad"
               onChange={e => setPort(e.nativeEvent.text)}
             />
           </S.AddressContainer>
@@ -108,11 +111,14 @@ export const EditServiceScreen: FC<EditServiceScreenProps> = ({
           <S.Input
             title="Username"
             value={username}
+            autoComplete="username-new"
             onChange={e => setUsername(e.nativeEvent.text)}
           />
           <S.Input
             title="Password"
             value={password}
+            secureTextEntry
+            autoComplete="password"
             onChange={e => setPassword(e.nativeEvent.text)}
           />
         </S.Section>
