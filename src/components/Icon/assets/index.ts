@@ -13,6 +13,7 @@ export * from './Bookmark.outline';
 export * from './Checkmark';
 export * from './Close.circle';
 export * from './Close.circle.outline';
+export * from './Close';
 export * from './Copybook.fluent';
 export * from './Cube.outline';
 export * from './Edit.outline';

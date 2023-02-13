@@ -22,6 +22,7 @@ export const icons = {
   'bookmark-outline': assets.OutlineBookmark,
   'close-circle': assets.CircleClose,
   'close-circle-outline': assets.OutlineCircleClose,
+  close: assets.Close,
   'copybook-fluent': assets.FluentCopybook,
   'cube-outline': assets.OutlineCube,
   'edit-outline': assets.OutlineEdit,

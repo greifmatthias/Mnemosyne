@@ -18,6 +18,7 @@ const HeaderContainer = styled(View)(({theme: {colors, spacings}}) => ({
   flexDirection: 'row',
   alignItems: 'center',
   padding: spacings.sm,
+  paddingLeft: spacings.md,
   backgroundColor: colors.primary.tint40,
 }));
 

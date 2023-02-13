@@ -24,6 +24,14 @@ export const DirScreen: FC<DirScreenProps> = ({navigation, route}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: service?.name,
+      headerLeft: ({canGoBack}: any) =>
+        canGoBack ? (
+          <IconButton
+            accessibilityLabel="Go back to previous screen"
+            iconProps={{name: 'close'}}
+            onPress={navigation.goBack}
+          />
+        ) : null,
     });
   }, [navigation, service]);
 
